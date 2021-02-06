@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360产品介绍案例</title>
+    <script src="../jquery.js"></script>
+    <script src="jquery.fullPage.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .section{
+            overflow: hidden;
+        }
+        .first{
+            padding-top: 80px;
+        }
+        .first .logo{
+            width: 258px;
+            height: 186px;
+            margin: 0px auto;
+            background: url("images/logo.png"); 
+        }
+        .first .text{
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+        }
+        .first .text img{
+            margin: 0 40px;
+            opacity: 0.3;
+        }
+        .first .intro{
+            width: 772px;
+            height: 49px;
+            margin: 40px auto;
+            background: url("images/info_1.png");
+        }
+        .first.current  .text img{
+            margin: 0 5px;
+            opacity: 1;
+            transition: margin 1s,opacity 1s;
+        }
+
+        .second > div{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .second .shiled{
+            width: 440px;
+            font-size: 0px;
+        }
+        .second .info{
+            width: 635px;
+            height: 309px;
+            background: url("images/info_2.png");
+        }
+        .second .shiled > img:nth-of-type(1){
+            transform: translate(100px,100px) rotate(30deg);
+        }
+        .second .shiled > img:nth-of-type(2){
+            transform: translate(-100px,-100px) rotate(-30deg);
+        }
+        .second .shiled > img:nth-of-type(3){
+            transform: translate(200px,200px) rotate(60deg);
+        }
+        .second .shiled > img:nth-of-type(4){
+            transform: translate(-200px,-200px) rotate(-60deg);
+        }
+        .second .shiled > img:nth-of-type(5){
+            transform: translate(150px,150px) rotate(90deg);
+        }
+        .second .shiled > img:nth-of-type(6){
+            transform: translate(50px,150px) rotate(-90deg);
+        }.second .shiled > img:nth-of-type(7)){
+            transform: translate(-150px,-150px) rotate(60deg);
+        }
+        .second .shiled > img:nth-of-type(8){
+            transform: translate(110px,-250px) rotate(-90deg);
+        }
+        .second .shiled > img:nth-of-type(9){
+            transform: translate(-250px,10px) rotate(145deg);
+        }
+        .second .shiled > img{
+            transition: transform 1s;
+        }
+        .second.current .shiled > img{
+            transform: none;
+        }
+
+        .third{
+            position: relative;
+        }
+        .third .info{
+            width: 631px;
+            height: 278px;
+            background: url("images/info_3.png");
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-110%,-50%);
+        }
+        .third .circle{
+            width: 453px;
+            height: 449px;
+            background: url("images/circle.png");
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(130%,-50%);
+        }
+        .third .rocket{
+            width: 203px;
+            height: 204px;
+            background: url("images/rocket.png");
+            position: absolute;
+            top: 700px;
+            left: -800px;
+        }
+        .third.current .rocket{
+            top: 125px;
+            left: 125px;
+            transition: top 1s,left 1s;
+        }
+
+        .fourth{
+            position: relative;
+        }
+        .fourth .search{
+            width: 529px;
+            height: 438px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-120%,-50%);
+            overflow: hidden;
+        }
+        .fourth .search .searchBar{
+            width: 529px;
+            height: 66px;
+            background: url("images/search.png");
+            transform: translate(-100%);
+        }
+        .fourth .search .searchText{
+            /* width: 99px; */
+            width: 0px;
+            height: 22px;
+            background: url("images/key.png");
+            position: absolute;
+            top: 20px;
+            left: 15px;
+        }
+        .fourth .search .searchResult{
+            width: 529px;
+            /* height: 372px; */
+            height: 0;
+            background: url("images/result.png");
+            margin-top: -12px;
+        }
+        .fourth .info{
+            width: 612px;
+            height: 299px;
+            background: url("images/info_4.png");
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(110%,-50%);
+        }
+        .fourth.current .searchBar{
+            transform: none;
+            transition: transform 1s;
+        }
+        .fourth.current .searchText{
+            width: 99px;
+            transition: width 1s steps(5) 1s;
+        }
+        .fourth.current .search .searchResult{
+            height: 372px;
+            transition: height 2s 2s;
+        }
+
+        .fifth{
+            color: #fff;
+        }
+        .fifth .Text{
+            width: 1077px;
+            height: 134px;
+            background: url("images/info_5.png");
+            margin: 50px auto;
+        }
+        .fifth .main{
+            width: 1020px;
+            height: 500px;              
+            border: 1px solid #fff;
+            margin: 0 auto;
+            background: rgb(2, 202, 252);
+        }
+        .fifth .main .search{
+            /* width: 1004px; */
+            width: 0px;
+            height: 79px;
+            background: url("images/toolbar.png");
+            position: relative;
+        }
+        .fifth .main .search .border{
+            /* width: 920px; */
+            width: 0px;
+            height: 25px;
+            border: 1px solid #fff;
+            position: absolute;
+            top: 32px;
+            left: 70px;
+        }
+        .fifth .main .center{
+            width: 1004px;
+            height: 381px;
+        }
+        .fifth .main .info{
+            /* width: 1020px; */
+            width: 0px;
+            height: 40px;
+            line-height: 40px;
+            background: url("images/extra.png");
+            background-repeat: no-repeat;
+            border-top: 1px solid #fff;
+            text-align: right;
+            background-position: right;
+        }
+        .fifth.current .search{
+            width: 1004px;
+            transition: width 1s;
+        }
+        .fifth.current .info{
+            width: 1020px;
+            transition: width 1s;
+        }
+        .fifth.current .main .search .border{
+            width: 920px;
+            transition: width 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="dowebok">
+        <div class="section first">
+            <div class="logo"></div>
+            <div class="text">
+               <img src="images/text_1.png" alt="">
+               <img src="images/text_2.png" alt="">
+               <img src="images/text_3.png" alt="">
+               <img src="images/text_4.png" alt="">
+               <img src="images/text_5.png" alt="">
+               <img src="images/text_6.png" alt="">
+               <img src="images/text_7.png" alt="">
+               <img src="images/text_8.png" alt="">
+            </div>
+            <div class="intro"></div>
+        </div>
+        <div class="section second">
+                <div class="shiled">
+                    <img src="images/shield_1.png" alt="">
+                    <img src="images/shield_2.png" alt="">
+                    <img src="images/shield_3.png" alt="">
+                    <img src="images/shield_4.png" alt="">
+                    <img src="images/shield_5.png" alt=""> 
+                    <img src="images/shield_6.png" alt="">
+                    <img src="images/shield_7.png" alt="">
+                    <img src="images/shield_8.png" alt="">
+                    <img src="images/shield_9.png" alt="">
+                </div>
+                <div class="info"></div>
+        </div>
+        <div class="section third">
+            <div class="info"></div>
+            <div class="circle">
+                <div class="rocket"></div>
+            </div>
+        </div>
+        <div class="section fourth">
+            <div class="search">
+                <div class="searchBar"></div>
+                <div class="searchText"></div>
+                <div class="searchResult"></div>
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="section fifth">
+            <div class="Text"></div>
+            <div class="main">
+                <div class="search">
+                    <div class="border"></div>
+                </div>
+                <div class="center"></div>
+                <div class="info"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+         $(function () {
+            $('#dowebok').fullpage({
+                sectionsColor:["#02f","#2c2","orange","pink","#4cf"],
+                /*滚动到某一屏之后的回调
+            * index:当前屏的索引，索引从1开始*/
+            afterLoad:function(anchorLink,index){
+                /*将其它屏的current样式标记清除*/
+                $(".section").removeClass("current");
+                setTimeout(function(){
+                    /*当滚动到某一个屏之后，添加样式标记*/
+                    $(".section").eq(index-1).addClass("current");},500);
+            }
+
+            });
+        });
+    </script>
+</body>
+</html>
